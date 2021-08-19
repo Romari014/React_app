@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './postAddForm.css';
+import { Button } from 'reactstrap'
 
 const PostAddForm = () => {
     return (
@@ -10,10 +11,11 @@ const PostAddForm = () => {
                 placeholder="What do You thing right now?"
                 className="form-control new-post-label"
             />
-            <button
+            <Button
                 type="submit"
-                className="btn btn-outline-secondary">
-                Add post</button>
+                outline 
+                color="secondary">
+                Add post</Button>
         </form>
     )
 }
