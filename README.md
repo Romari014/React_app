@@ -1,8 +1,8 @@
-#Simple react application for the class and function knowledge
+# Simple react application for the class and function knowledge
 
-##The fundamentals of the State and props how it works and how to use them
+## The fundamentals of the State and props how it works and how to use them
 
-This is the project to learn the basic and fundamentals of react how the life-cycle works. How to user the react to best practice. This application renders the users data and with different components.
+This is the project to learn the basic and fundamentals of react how the life-cycle works. How to user the react to best practice. This application renders the users data and with different components. Also You can add post, delete them, make important or like them with double click to the text. You can use search panel as well to find the post what you need below, furthermore you can sort posts by liked or show all of them. Additionally You can see count stats in the header of posts and liked posts.
 
 
 # Getting Started with Create React App
