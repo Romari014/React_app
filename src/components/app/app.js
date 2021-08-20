@@ -56,22 +56,24 @@ export default class App extends Component {
             import: false,
             id: this.maxId++
         }
-        this.setState(({data}) => {
-            const newArr = [...data, newItem]
-            return {
-                data: newArr
+        this.setState(({ data }) => {
+            if (newItem.label !== '' && newItem.label.trim()) {//проверя на пустые строки
+                const newArr = [...data, newItem]
+                return {
+                    data: newArr
+                }
             }
         });
     }
 
     onToggleImportant(id) {
-        this.setState(({data}) =>{
+        this.setState(({ data }) => {
             const index = data.findIndex(elem => elem.id === id);
 
             const old = data[index];
-            const newitem = {...old, important: !old.important};
+            const newItem = { ...old, important: !old.important };
 
-            const newArr = [...data.slice(0, index), newitem, ...data.slice(index + 1)];
+            const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
 
             return {
                 data: newArr
@@ -80,13 +82,13 @@ export default class App extends Component {
     }
 
     onToggleLiked(id) {
-        this.setState(({data}) =>{
+        this.setState(({ data }) => {
             const index = data.findIndex(elem => elem.id === id);
 
             const old = data[index];
-            const newitem = {...old, like: !old.like};
+            const newItem = { ...old, like: !old.like };
 
-            const newArr = [...data.slice(0, index), newitem, ...data.slice(index + 1)];
+            const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
 
             return {
                 data: newArr
@@ -98,33 +100,33 @@ export default class App extends Component {
     searchPost(items, term) {
         if (term.length === 0) {
             return items
-        } 
-           
-        return items.filter( (item) => {
-                return item.label.indexOf(term) > -1
-            });
-        
+        }
+
+        return items.filter((item) => {
+            return item.label.indexOf(term) > -1
+        });
+
     }
 
     filterPost(items, filter) {
         if (filter === 'like') {
             return items.filter(item => item.like)
-        } else  {
+        } else {
             return items
         }
     }
 
     onUpdateSearch(term) {
-        this.setState({term})
+        this.setState({ term })
     }
 
     onFilterSelect(filter) {
-        this.setState({filter})
+        this.setState({ filter })
     }
 
 
     render() {
-        const {data, term, filter} = this.state;
+        const { data, term, filter } = this.state;
 
         const liked = data.filter(item => item.like).length;
         const allPost = data.length;
@@ -133,27 +135,27 @@ export default class App extends Component {
 
         return (
             <div className="app">
-                <AppHeader 
+                <AppHeader
                     liked={liked}
-                    allPost={allPost} 
+                    allPost={allPost}
                 />
                 <div className="search-panel d-flex">
-                    <SearchPanel 
+                    <SearchPanel
                         onUpdateSearch={this.onUpdateSearch}
                     />
-                    <PostStatusFilter 
+                    <PostStatusFilter
                         filter={filter}
                         onFilterSelect={this.onFilterSelect}
                     />
                 </div>
                 <PostList
                     posts={visiblePosts}
-                    onDelete={this.deleteItem} 
-                    onToggleImportant={this.onToggleImportant} 
-                    onToggleLiked={this.onToggleLiked} 
+                    onDelete={this.deleteItem}
+                    onToggleImportant={this.onToggleImportant}
+                    onToggleLiked={this.onToggleLiked}
                 />
                 <PostAddForm
-                    onAdd={this.addItem} 
+                    onAdd={this.addItem}
                 />
             </div>
         )
